@@ -1,0 +1,3 @@
+import { ContentPage } from "@/components/content-page";
+export const metadata = { title: "Technology" };
+export default function Technology() { return <ContentPage eyebrow="OYOON ALTAQNYA / Technology" title="Choose the right" accent="foundation." description="Technology agnostic by design, we bring the domains, architecture thinking, and delivery discipline to build environments that last." meta="DOMAINS, NOT LOGOS\nCAPABILITY FIRST\nPARTNERSHIPS WHERE AUTHORIZED" introTitle="Capability before catalogue." intro="We select technology according to customer requirements, operating reality, risk, and long-term sustainability." cards={["Microsoft", "Network & Infrastructure", "Cybersecurity Technologies", "Cloud", "Data", "AI & Automation", "Observability"]} />; }

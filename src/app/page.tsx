@@ -1,69 +1,16 @@
-import Image from "next/image";
+import Link from "next/link";
+import { capabilities, frameworks, industries, outcomes, solutions } from "@/lib/content";
 
 export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+  return <main>
+    <section className="hero"><div className="hero-copy"><p className="eyebrow"><span className="live-dot" /> INFORMATION TECHNOLOGY & CYBERSECURITY</p><h1>Secure Technology.<br /><em>Smarter Transformation.</em><br />Resilient Business.</h1><p className="hero-intro">OYOON ALTAQNYA helps organizations design, implement, secure, and optimize modern technology environments across infrastructure, cloud, applications, data, digital transformation, and cybersecurity.</p><div className="hero-actions"><Link className="button button-primary" href="/contact">Talk to an expert <b>↗</b></Link><Link className="button button-quiet" href="#capabilities">Explore capabilities <b>↓</b></Link></div><div className="lifecycle"><span>ASSESS</span><i>→</i><span>ADVISE</span><i>→</i><span>ARCHITECT</span><i>→</i><span>IMPLEMENT</span><i>→</i><span>OPTIMIZE</span></div></div><div className="architecture-visual" aria-label="Secure digital architecture visualization"><div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="visual-core"><small>OAT</small><strong>↗</strong></div><span className="visual-node node-one">IDENTITY<br />GRAPH</span><span className="visual-node node-two">CLOUD<br />FABRIC</span><span className="visual-node node-three">RESILIENT<br />DATA</span><span className="visual-meta">ARCHITECTURE / 01<br />SECURITY BY DESIGN</span></div></section>
+    <section className="promise"><span>Consult.</span><span>Design.</span><span>Implement.</span><span>Secure.</span><span>Optimize.</span></section>
+    <section className="section about-section"><div className="section-label">01 / THE COMPANY</div><div className="two-column"><h2>Technology should make your business <em>braver.</em></h2><div><p>We bring technology and cybersecurity together so leaders can move with clarity. Our work spans the full lifecycle: assess, advise, architect, implement, secure, validate, and optimize.</p><Link className="inline-link" href="/about">Why OYOON ALTAQNYA <b>↗</b></Link></div></div></section>
+    <section className="section dark-section" id="capabilities"><div className="section-heading"><div><div className="section-label">02 / WHAT WE DO</div><h2>One partner.<br /><em>Full capability.</em></h2></div><p>Enterprise-grade expertise across technology, security, and the systems that connect them.</p></div><div className="capability-grid">{capabilities.map((item, i) => <Link className={`capability-card card-${i % 4}`} href={item.href} key={item.number}><span className="card-number">{item.number}</span><h3>{item.title}</h3><p>{item.summary}</p><span className="card-arrow">↗</span></Link>)}</div></section>
+    <section className="section outcomes-section"><div className="section-label">03 / BUSINESS OUTCOMES</div><h2>Make complexity <em>work for you.</em></h2><div className="outcomes-grid">{outcomes.map(([n, title, copy]) => <div key={n}><span>{n}</span><h3>{title}</h3><p>{copy}</p></div>)}</div></section>
+    <section className="section solutions-section"><div className="section-heading"><div><div className="section-label">04 / CYBERSECURITY SOLUTIONS</div><h2>Security for the<br /><em>whole picture.</em></h2></div><Link className="inline-link" href="/solutions">View all solutions <b>↗</b></Link></div><div className="solution-grid">{solutions.map(([n, title, copy]) => <Link href="/solutions" key={n}><span>{n}</span><strong>{title}</strong><small>{copy}</small></Link>)}</div></section>
+    <section className="section industry-section"><div className="section-label">05 / WHERE WE WORK</div><div className="two-column"><h2>Built for <em>critical environments.</em></h2><div className="industry-list">{industries.map((industry, index) => <Link href="/industries" key={industry}><span>0{index + 1}</span><strong>{industry}</strong><b>↗</b></Link>)}</div></div></section>
+    <section className="section standards-section"><div><div className="section-label">06 / FRAMEWORKS</div><h2>Grounded in <em>good practice.</em></h2><p>Recommendations and delivery aligned with recognized industry frameworks. No implied certifications.</p></div><div className="framework-grid">{frameworks.map((framework) => <span key={framework}>{framework}</span>)}</div></section>
+    <section className="final-cta"><div className="section-label">07 / START HERE</div><h2>Let&apos;s build a more <em>secure digital future.</em></h2><p>Whether you are modernizing infrastructure, strengthening cybersecurity, migrating to the cloud, or preparing for emerging threats, our experts can help.</p><div className="hero-actions"><Link className="button button-primary" href="/contact">Talk to an expert <b>↗</b></Link><Link className="button button-quiet" href="/rfp">Request a proposal <b>↗</b></Link></div></section>
+  </main>;
 }

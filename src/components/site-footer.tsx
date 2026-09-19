@@ -1,0 +1,5 @@
+import Link from "next/link";
+
+export function SiteFooter() {
+  return <footer className="site-footer"><div><Link className="brand" href="/"><span className="brand-symbol"><i /><i /><i /></span><span>OYOON ALTAQNYA<span className="brand-dot">.</span></span></Link><p>Information Technology & Cybersecurity</p></div><div className="footer-links"><div><b>Company</b><Link href="/about">About</Link><Link href="/industries">Industries</Link><Link href="/technology">Technology</Link><Link href="/insights">Insights</Link></div><div><b>Services</b><Link href="/services">IT & Cybersecurity</Link><Link href="/solutions">Solutions</Link><Link href="/training">Training</Link><Link href="/contact">Contact</Link></div><div><b>Resources</b><Link href="/resources">Downloads</Link><Link href="/insights">Articles</Link><Link href="/rfp">Submit RFP / RFQ</Link><Link href="/contact">Request a consultation</Link></div></div><div className="footer-bottom"><span>Secure Technology. Smarter Transformation. Resilient Business.</span><span>© 2026 OYOON ALTAQNYA</span></div></footer>;
+}

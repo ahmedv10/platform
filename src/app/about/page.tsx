@@ -1,0 +1,3 @@
+import { ContentPage } from "@/components/content-page";
+export const metadata = { title: "About" };
+export default function About() { return <ContentPage eyebrow="OYOON ALTAQNYA / About" title="Built for the" accent="hard problems." description="OYOON ALTAQNYA connects board-level direction with architecture, delivery, and operational readiness for complex and critical environments." meta="TRIPOLI / LIBYA\nLOCAL UNDERSTANDING\nENTERPRISE DISCIPLINE" introTitle="Technology with intent." intro="Our promise is simple: consult, design, implement, secure, and optimize. We bring technology and cybersecurity together so leaders can move with clarity." cards={["Who We Are", "Vision", "Mission", "Our Values", "Why OYOON ALTAQNYA", "Our Approach"]} />; }

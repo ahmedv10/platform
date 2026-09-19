@@ -1,0 +1,1 @@
+export function PageHero({ eyebrow, title, accent, description, meta }: { eyebrow: string; title: string; accent: string; description: string; meta: string }) { return <section className="page-hero"><div><div className="section-label">{eyebrow}</div><h1>{title}<br /><em>{accent}</em></h1><p>{description}</p></div><div className="page-meta">{meta}</div></section>; }
