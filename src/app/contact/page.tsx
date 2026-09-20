@@ -1,3 +1,38 @@
 "use client";
 import { FormEvent, useState } from "react";
-export default function Contact(){const [sent,setSent]=useState(false);async function submit(event:FormEvent<HTMLFormElement>){event.preventDefault();const form=new FormData(event.currentTarget);await fetch('/api/leads',{method:'POST',body:JSON.stringify(Object.fromEntries(form))});setSent(true)}return <main><section className="page-hero"><div><div className="section-label">OYOON ALTAQNYA / Contact</div><h1>Bring us the<br /><em>hard problem.</em></h1><p>Consultation, assessment, proposal, quote, security testing, solution design, training, or RFP/RFQ.</p></div><div className="page-meta">HELLO@OYOONALTAQNYA.COM<br />LIBYA / REGIONAL DELIVERY<br />ENGLISH / العربية</div></section><section className="section contact-section"><div className="two-column"><div><h2>Let&apos;s make the<br /><em>next move.</em></h2><p>Tell us what you are solving for and our team will route your request.</p></div>{sent?<div className="success-message"><span>01 / RECEIVED</span><h3>Thank you.</h3><p>Your request has been captured for follow-up.</p></div>:<form className="lead-form" onSubmit={submit}><label>Name *<input name="name" required /></label><label>Company *<input name="company" required /></label><label>Job title<input name="jobTitle" /></label><label>Email *<input type="email" name="email" required /></label><label>Phone<input name="phone" /></label><label>Country<input name="country" /></label><label>Area of interest *<select name="interest" required><option value="">Select an area</option><option>IT Consulting</option><option>IT Solutions</option><option>Cybersecurity Assessment</option><option>Penetration Testing</option><option>Incident Response</option><option>Training</option></select></label><label>Project scope<select name="scope"><option>Exploring</option><option>Defined project</option><option>Enterprise program</option></select></label><label className="full">Message *<textarea name="message" required /></label><div className="form-actions"><button className="button button-primary" type="submit">Send inquiry <b>↗</b></button></div></form>}</div></section></main>}
+
+export default function Contact() {
+  const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSending(true);
+    setError("");
+
+    const form = new FormData(event.currentTarget);
+
+    try {
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(form)),
+      });
+
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        throw new Error(result?.error ?? "Unable to send your inquiry right now.");
+      }
+
+      setSent(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Unable to send your inquiry right now.");
+    } finally {
+      setSending(false);
+    }
+  }
+
+  return <main><section className="page-hero"><div><div className="section-label">OYOON ALTAQNYA / Contact</div><h1>Bring us the<br /><em>hard problem.</em></h1><p>Consultation, assessment, proposal, quote, security testing, solution design, training, or RFP/RFQ.</p></div><div className="page-meta">HELLO@OYOONALTAQNYA.COM<br />LIBYA / REGIONAL DELIVERY<br />ENGLISH / العربية</div></section><section className="section contact-section"><div className="two-column"><div><h2>Let&apos;s make the<br /><em>next move.</em></h2><p>Tell us what you are solving for and our team will route your request.</p></div>{sent ? <div className="success-message"><span>01 / RECEIVED</span><h3>Thank you.</h3><p>Your request has been captured for follow-up.</p></div> : <form className="lead-form" onSubmit={submit}><label>Name *<input name="name" required /></label><label>Company *<input name="company" required /></label><label>Job title<input name="jobTitle" /></label><label>Email *<input type="email" name="email" required /></label><label>Phone<input name="phone" /></label><label>Country<input name="country" /></label><label>Area of interest *<select name="interest" required><option value="">Select an area</option><option>IT Consulting</option><option>IT Solutions</option><option>Cybersecurity Assessment</option><option>Penetration Testing</option><option>Incident Response</option><option>Training</option></select></label><label>Project scope<select name="scope"><option>Exploring</option><option>Defined project</option><option>Enterprise program</option></select></label><label className="full">Message *<textarea name="message" required /></label>{error && <p className="form-error" role="alert">{error}</p>}<div className="form-actions"><button className="button button-primary" type="submit" disabled={sending}>{sending ? "Sending..." : "Send inquiry"} <b>↗</b></button></div></form>}</div></section></main>;
+}
