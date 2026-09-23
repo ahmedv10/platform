@@ -4,10 +4,26 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
 export const metadata: Metadata = {
-  title: { default: "OYOON ALTAQNYA | Secure Technology", template: "%s | OYOON ALTAQNYA" },
-  description: "OYOON ALTAQNYA is an Information Technology and Cybersecurity partner helping organizations design, transform, secure, and optimize digital environments.",
+  title: {
+    default: "OYOON ALTAQNYA | Secure Technology",
+    template: "%s | OYOON ALTAQNYA",
+  },
+  description:
+    "OYOON ALTAQNYA is an Information Technology and Cybersecurity partner helping organizations design, transform, secure, and optimize digital environments.",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body><SiteHeader />{children}<SiteFooter /></body></html>;
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body>
+        <SiteHeader />
+        <main>{children}</main>
+        <SiteFooter />
+      </body>
+    </html>
+  );
 }

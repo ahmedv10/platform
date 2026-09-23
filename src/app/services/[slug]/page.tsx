@@ -1,3 +1,51 @@
-import { ContentPage } from "@/components/content-page";
-export function generateStaticParams(){return [{slug:"it-consulting"},{slug:"it-solutions"},{slug:"it-services"}]}
-export default async function ServiceDetail({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const title=slug.replaceAll("-"," ");return <ContentPage eyebrow={`OYOON ALTAQNYA / Services / ${title}`} title="Build the right" accent="capability." description="A focused service path designed around your operating context, measurable outcomes, and long-term resilience." meta="ASSESS / DESIGN / IMPLEMENT\nVALIDATE / OPTIMIZE" introTitle="From requirement to result." intro="We combine advisory, architecture, delivery, and optimization so each service contributes to a stronger digital environment." cards={["Overview", "Business Challenges", "What We Deliver", "Our Methodology", "Technology Domains", "Business Outcomes"]} />;}
+import { portfolioSections } from "@/lib/portfolio";
+import Link from "next/link";
+
+export const metadata = {
+  title: "Services | OYOON ALTAQNYA",
+};
+
+export default function ServicesSlugPage() {
+  const servicesSections = portfolioSections.filter(
+    (s) => s.number === "01" || s.number === "02"
+  );
+
+  return (
+    <main>
+      <section className="page-hero">
+        <div>
+          <div className="section-label">OYOON ALTAQNYA / Services</div>
+          <h1>
+            Everything that<br />
+            <em>keeps moving.</em>
+          </h1>
+          <p>
+            End-to-end technology and cybersecurity services, from strategy
+            through implementation, validation, and optimization.
+          </p>
+        </div>
+        <div className="page-meta">
+          INFORMATION TECHNOLOGY<br />
+          CYBERSECURITY<br />
+          FULL LIFECYCLE CAPABILITY
+        </div>
+      </section>
+
+      <section className="section content-cards">
+        <div className="section-label">02 / DETAILED SERVICES</div>
+        <div className="detail-grid">
+          {servicesSections.map((section) =>
+            section.items.map((item) => (
+              <Link className="detail-card" href={`/${section.slug}/${item.slug}`} key={item.id}>
+                <span>{section.number}</span>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+                <b className="card-arrow">↗</b>
+              </Link>
+            )),
+          )}
+        </div>
+      </section>
+    </main>
+  );
+}
